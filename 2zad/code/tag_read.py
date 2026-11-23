@@ -9,12 +9,11 @@ from nav_msgs.msg import Odometry
 
 kotwice = []
 
-
 def callback_pose(msg):
     print(f"Tag_pose: x: {msg.x}, y: {msg.y}, z: {msg.z}, qf: {msg.qf}")
 
 def callback_odom(msg):
-    print(f"Odom: x: {msg.x}, y: {msg.y}, z: {msg.z}, qf: {msg.qf}")
+    print(f"Odom: x: {msg.pose.pose.position.x}, y: {msg.pose.pose.position.y}, z: {msg.pose.pose.position.z}")
 
 def callback_status(msg):
     # print(f"x: {msg.x}, y: {msg.y}, z: {msg.z}, qf: {msg.qf}")
@@ -27,7 +26,6 @@ def callback_status(msg):
                     "distance": anchor.distance,
                     "qf": anchor.qf
                   }
-        # print(f"kotwice {kotwica["frame_id"]}, qf: {kotwica["qf"]}")
         if(kotwica["qf"] > 0.9):
             kotwice.append(kotwica)
             # print(f"Dodano kotwice {kotwice[-1]["frame_id"]}, x: {kotwice[-1]["x"]}, y: {kotwice[-1]["y"]}, z: {kotwice[-1]["z"]}, dist: {kotwice[-1]["distance"]}")
